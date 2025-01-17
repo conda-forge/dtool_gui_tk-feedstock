@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/dtool-gui-tk/dtool-gui-tk-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/dtool-gui-tk/dtool-gui-tk-{{ version }}.tar.gz
   sha256: eb423a9e74d671583a8da1bdb08338a2906a1c6187daca7b2c7ad133bebb47df
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - dtool-tk=dtool_gui_tk.tkgui:tkgui
   noarch: python
@@ -20,12 +20,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - dtool_info
     - dtoolcore >=3.18.0
     - jsonschema
-    - python >=3.6
+    - python >={{ python_min }}
     - ruamel.yaml
 
 test:
@@ -35,6 +35,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jic-dtool/dtool-gui-tk
